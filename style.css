@@ -6,15 +6,24 @@
   --bg:#f8fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569;
   --border:rgba(0,0,0,.08); --accent:#7c3aed; --accent-2:#0891b2; --card:#ffffff;
 }
-html{font-size:16px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto}
 
+/* Base */
+html{font-size:16px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Lucida Grande","Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+/* Layout */
 .app{display:grid;grid-template-columns:280px 1fr;min-height:100dvh}
 aside{border-right:1px solid var(--border);background:var(--panel);position:sticky;top:0;height:100dvh;overflow:auto}
 header.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--panel);z-index:20}
 .logo{font-weight:800;letter-spacing:.3px}
 .muted{color:var(--muted)}
 
+/* Sidebar */
 .side{padding:12px}
 .fandom{margin:8px 0}
 .fandom>button{width:100%;text-align:left;background:transparent;border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer}
@@ -22,7 +31,7 @@ header.topbar{display:flex;align-items:center;justify-content:space-between;gap:
 .stories{padding:8px 6px 0 6px;display:none}
 .fandom[aria-expanded="true"] .stories{display:block}
 
-/* --- stories with expandable chapters --- */
+/* Stories with expandable chapters */
 .storybox{margin:4px 0}
 .story-btn{
   width:100%;text-align:left;background:transparent;border:1px solid var(--border);
@@ -38,6 +47,7 @@ header.topbar{display:flex;align-items:center;justify-content:space-between;gap:
 .chapter-link:hover{border-color:var(--border)}
 .chapter-link.active{border-color:var(--accent)}
 
+/* Mobile bar & drawer */
 .mobilebar{display:none;position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--border);z-index:30}
 .mobilebar .row{display:flex;align-items:center;justify-content:space-between;padding:10px}
 .drawer{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;z-index:100}
@@ -45,6 +55,7 @@ header.topbar{display:flex;align-items:center;justify-content:space-between;gap:
 .drawer-panel{position:absolute;top:0;bottom:0;left:0;width:86%;max-width:320px;background:var(--panel);border-right:1px solid var(--border);overflow:auto;z-index:101}
 body.no-scroll{overflow:hidden}
 
+/* Reader */
 main.reader{display:flex;flex-direction:column;min-width:0}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:10}
 .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -60,6 +71,7 @@ article p{margin:0 0 1em}
 
 footer{border-top:1px solid var(--border);padding:20px;color:var(--muted)}
 
+/* Mobile polish */
 @media (max-width:980px){
   .app{grid-template-columns:1fr}
   aside{display:none}
