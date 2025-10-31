@@ -12,7 +12,7 @@ const drawerContent = document.getElementById('drawer-content');
 document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
 document.getElementById('theme-toggle-desktop').addEventListener('click', toggleTheme);
 
-// Drawer mobile con blocco scroll
+// Drawer mobile
 document.getElementById('open-drawer')?.addEventListener('click', ()=>{
   drawerEl.setAttribute('aria-hidden','false');
   document.body.classList.add('no-scroll');
@@ -48,12 +48,16 @@ document.getElementById('font-dec').addEventListener('click', ()=>{ if(sizeIdx>0
 const DATA = Array.isArray(window.FF_DATA) ? window.FF_DATA : [];
 let current = { story: null, index: -1 };
 
-// ===== CHAPTER LOADER (with cache) =====
+// ===== CHAPTER CACHE/LOAD =====
 const CH_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const ck = ch => `ff_chapter_${ch.id}`;
 const getCached = ch => {
-  try { const raw = localStorage.getItem(ck(ch)); if(!raw) return null;
-    const {html,ts} = JSON.parse(raw); if(!ts || Date.now()-ts>CH_CACHE_TTL_MS) return null; return html;
+  try {
+    const raw = localStorage.getItem(ck(ch));
+    if(!raw) return null;
+    const {html,ts} = JSON.parse(raw);
+    if(!ts || Date.now()-ts>CH_CACHE_TTL_MS) return null;
+    return html;
   } catch { return null; }
 };
 const setCached = (ch,html)=>{ try { localStorage.setItem(ck(ch), JSON.stringify({html,ts:Date.now()})); } catch {} };
@@ -63,10 +67,10 @@ async function loadChapterContent(ch){
   const cached = getCached(ch); if(cached) return cached;
   if(ch.contentUrl){
     const res = await fetch(ch.contentUrl, { cache: 'no-store' });
-    if(!res.ok) throw new Error('Cannot load chapter');
+    if(!res.ok) throw new Error(`Fetch failed ${res.status}: ${ch.contentUrl}`);
     const html = await res.text(); setCached(ch, html); return html;
   }
-  return '';
+  throw new Error('Missing contentUrl');
 }
 
 // ===== SIDEBAR WITH EXPANDABLE CHAPTERS =====
@@ -77,17 +81,13 @@ function makeSidebar(container){
     const box = document.createElement('div');
     box.className = 'muted';
     box.style.padding = '12px';
-    box.innerHTML = `
-      <p><strong>No stories found.</strong></p>
-      <p>Check that <code>data.js</code> loaded correctly and contains <code>window.FF_DATA = [...]</code>.</p>
-    `;
+    box.innerHTML = `<p><strong>No stories found.</strong></p>
+    <p>Check that <code>data.js</code> loaded correctly and contains <code>window.FF_DATA = [...]</code>.</p>`;
     container.appendChild(box);
-    console.error('FF_DATA is empty or data.js did not load.');
     return;
   }
 
   DATA.forEach((group, gi)=>{
-    // FANDOM
     const fanBox = document.createElement('div');
     fanBox.className = 'fandom';
     fanBox.setAttribute('aria-expanded', gi===0 ? 'true' : 'false');
@@ -102,7 +102,6 @@ function makeSidebar(container){
     const storiesWrap = document.createElement('div');
     storiesWrap.className = 'stories';
 
-    // STORIES
     (group.stories || []).forEach((st)=>{
       const storyBox = document.createElement('div');
       storyBox.className = 'storybox';
@@ -116,7 +115,6 @@ function makeSidebar(container){
         storyBox.setAttribute('aria-expanded', now);
       });
 
-      // CHAPTERS
       const chList = document.createElement('div');
       chList.className = 'chapters';
 
@@ -164,12 +162,35 @@ function highlightActiveChapter(root, story, idx){
 makeSidebar(sidebarEl);
 makeSidebar(drawerContent);
 
-// ===== READER =====
+// ===== READER & NAVIGATION =====
 function openStory(story, chapterIndex){
   current.story = story;
-  current.index = chapterIndex;
+  setIndex(chapterIndex);
+}
+
+function setIndex(newIdx){
+  if(!current.story) return;
+  const max = current.story.chapters.length - 1;
+  const clamped = Math.max(0, Math.min(newIdx, max));
+  current.index = clamped;
+  // update buttons state here to avoid stale UI
+  prevBtn.disabled = current.index<=0;
+  nextBtn.disabled = current.index>=max;
   renderChapter();
 }
+
+function goPrev(){
+  if(!current.story) return;
+  if(current.index>0) setIndex(current.index - 1);
+}
+function goNext(){
+  if(!current.story) return;
+  const max = current.story.chapters.length - 1;
+  if(current.index<max) setIndex(current.index + 1);
+}
+
+prevBtn.addEventListener('click', (e)=>{ e.preventDefault(); goPrev(); window.scrollTo({top:0,behavior:'smooth'}); });
+nextBtn.addEventListener('click', (e)=>{ e.preventDefault(); goNext(); window.scrollTo({top:0,behavior:'smooth'}); });
 
 async function renderChapter(){
   if(!current.story){
@@ -188,7 +209,6 @@ async function renderChapter(){
         </p>
       </div>
     `;
-    prevBtn.disabled=true; nextBtn.disabled=true; 
     return;
   }
 
@@ -196,29 +216,28 @@ async function renderChapter(){
   titleEl.textContent = ch.title;
   metaEl.textContent = `${current.story.title} • ~${ch.minutes} min`;
 
-  prevBtn.disabled = current.index<=0;
-  nextBtn.disabled = current.index>=current.story.chapters.length-1;
-
   bodyEl.hidden = false;
-  bodyEl.innerHTML = await loadChapterContent(ch);
+  bodyEl.innerHTML = '<p class="muted">Loading…</p>';
+
+  try {
+    const html = await loadChapterContent(ch);
+    bodyEl.innerHTML = html;
+  } catch (err) {
+    console.error(err);
+    bodyEl.innerHTML = `
+      <div class="muted">
+        <p>Could not load this chapter.</p>
+        <p style="font-size:.95rem"><code>${ch.contentUrl}</code></p>
+      </div>`;
+  }
+
+  // keep UI in sync
+  const max = current.story.chapters.length - 1;
+  prevBtn.disabled = current.index<=0;
+  nextBtn.disabled = current.index>=max;
 
   highlightActiveChapter(sidebarEl, current.story, current.index);
   highlightActiveChapter(drawerContent, current.story, current.index);
 }
 
-prevBtn.addEventListener('click', ()=>{
-  if(current.index>0){
-    current.index--;
-    renderChapter();
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-});
-nextBtn.addEventListener('click', ()=>{
-  if(current.index<current.story.chapters.length-1){
-    current.index++;
-    renderChapter();
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-});
-
-// Importante: niente auto-open. La homepage mostra il welcome finché non si seleziona una storia.
+// No auto-open, homepage shows welcome
