@@ -26,8 +26,8 @@ window.FF_DATA = [
             title: "Chapter 3",
             minutes: 8,
             contentUrl: "assets/chapters/stray-kids/prisoner-nights/chapter-03.html"
-          }
-            {
+          },
+          {
             id: "sk-prisoner-004",
             title: "Chapter 4",
             minutes: 8,
@@ -149,7 +149,3 @@ window.FF_DATA = [
   }
 
 ];
-
-
-
-
