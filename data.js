@@ -19,13 +19,19 @@ window.FF_DATA = [
             id: "sk-prisoner-002",
             title: "Chapter 2",
             minutes: 8,
-            contentUrl: "assets/chapters/stray-kids/prisoner-nights/ch002.html"
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/chapter-02.html"
           },
           {
             id: "sk-prisoner-003",
             title: "Chapter 3",
             minutes: 8,
-            contentUrl: "assets/chapters/stray-kids/prisoner-nights/ch003.html"
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/chapter-03.html"
+          }
+            {
+            id: "sk-prisoner-004",
+            title: "Chapter 4",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/chapter-04.html"
           }
         ]
       },
@@ -143,6 +149,7 @@ window.FF_DATA = [
   }
 
 ];
+
 
 
 
