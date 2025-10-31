@@ -21,14 +21,14 @@ window.FF_DATA = [
             id: 's1-c2',
             title: 'Ch. 2 — The Deal',
             minutes: 10,
-            requiredAds: 1, // 1 ad required
+            requiredAds: 0, // 1 ad required
             contentUrl: 'assets/chapters/s1-c2.html'
           },
           {
             id: 's1-c3',
             title: 'Ch. 3 — The Key',
             minutes: 12,
-            requiredAds: 2, // 2 ads required
+            requiredAds: 0, // 2 ads required
             contentUrl: 'assets/chapters/s1-c3.html'
           }
         ]
@@ -39,4 +39,5 @@ window.FF_DATA = [
   { fandom: 'TESTO 3', stories: [] },
   { fandom: 'TESTO 4', stories: [] }
 ];
+
 
