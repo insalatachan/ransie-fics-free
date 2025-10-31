@@ -45,7 +45,7 @@ document.getElementById('font-inc').addEventListener('click', ()=>{ if(sizeIdx<s
 document.getElementById('font-dec').addEventListener('click', ()=>{ if(sizeIdx>0){ sizeIdx--; applySize(); } });
 
 // ===== DATA =====
-const DATA = window.FF_DATA || [];
+const DATA = Array.isArray(window.FF_DATA) ? window.FF_DATA : [];
 let current = { story: null, index: -1 };
 
 // ===== CHAPTER LOADER (with cache) =====
@@ -73,14 +73,27 @@ async function loadChapterContent(ch){
 function makeSidebar(container){
   container.innerHTML = '';
 
-  DATA.forEach(group=>{
+  if (!DATA.length) {
+    const box = document.createElement('div');
+    box.className = 'muted';
+    box.style.padding = '12px';
+    box.innerHTML = `
+      <p><strong>No stories found.</strong></p>
+      <p>Check that <code>data.js</code> loaded correctly and contains <code>window.FF_DATA = [...]</code>.</p>
+    `;
+    container.appendChild(box);
+    console.error('FF_DATA is empty or data.js did not load.');
+    return;
+  }
+
+  DATA.forEach((group, gi)=>{
     // FANDOM
     const fanBox = document.createElement('div');
     fanBox.className = 'fandom';
-    fanBox.setAttribute('aria-expanded','false');
+    fanBox.setAttribute('aria-expanded', gi===0 ? 'true' : 'false'); // espandi il primo fandom
 
     const fanBtn = document.createElement('button');
-    fanBtn.textContent = group.fandom;
+    fanBtn.textContent = group.fandom || 'Fandom';
     fanBtn.addEventListener('click', ()=>{
       const now = fanBox.getAttribute('aria-expanded')==='true' ? 'false' : 'true';
       fanBox.setAttribute('aria-expanded', now);
@@ -90,14 +103,14 @@ function makeSidebar(container){
     storiesWrap.className = 'stories';
 
     // STORIES
-    (group.stories || []).forEach(st=>{
+    (group.stories || []).forEach((st, si)=>{
       const storyBox = document.createElement('div');
       storyBox.className = 'storybox';
-      storyBox.setAttribute('aria-expanded','false');
+      storyBox.setAttribute('aria-expanded', 'false');
 
       const storyBtn = document.createElement('button');
       storyBtn.className = 'story-btn';
-      storyBtn.textContent = st.title;
+      storyBtn.textContent = st.title || 'Story';
       storyBtn.addEventListener('click', ()=>{
         const now = storyBox.getAttribute('aria-expanded')==='true' ? 'false' : 'true';
         storyBox.setAttribute('aria-expanded', now);
@@ -177,7 +190,6 @@ async function renderChapter(){
   bodyEl.hidden = false;
   bodyEl.innerHTML = await loadChapterContent(ch);
 
-  // Evidenzia capitolo attivo in sidebar e drawer
   highlightActiveChapter(sidebarEl, current.story, current.index);
   highlightActiveChapter(drawerContent, current.story, current.index);
 }
