@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>My Fanfiction Library</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Mobile top bar -->
+  <div class="mobilebar">
+    <div class="row">
+      <button class="pill" id="open-drawer">☰ Fandoms</button>
+      <div class="logo">My Fanfiction Library</div>
+      <button class="pill" id="theme-toggle" aria-label="Toggle theme">🌓</button>
+    </div>
+  </div>
+
+  <div class="app">
+    <aside>
+      <header class="topbar">
+        <div class="logo">My Fanfiction Library</div>
+        <button class="pill" id="theme-toggle-desktop" aria-label="Toggle theme">🌓</button>
+      </header>
+      <div class="side" id="sidebar"></div>
+    </aside>
+
+    <main class="reader">
+      <div class="toolbar">
+        <div class="controls">
+          <button class="pill" id="prev-chapter" disabled>← Previous chapter</button>
+          <button class="pill" id="next-chapter" disabled>Next chapter →</button>
+        </div>
+        <div class="controls">
+          <span class="muted">Text size</span>
+          <button class="pill" id="font-dec">A−</button>
+          <button class="pill" id="font-inc">A+</button>
+        </div>
+      </div>
+
+      <section class="content">
+        <div class="chapter-title" id="chapter-title">Select a story</div>
+        <div class="meta" id="chapter-meta">—</div>
+
+        <!-- UNLOCK OVERLAY -->
+        <div id="locker" class="overlay" hidden>
+          <div class="title" style="font-weight:800; margin-bottom:6px">Unlock chapter</div>
+          <div class="muted">
+            Watch <strong id="ads-needed">1</strong> ad(s) to unlock.
+          </div>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="ads-bar" class="bar"></div>
+          </div>
+          <div class="muted" id="ads-status">0% completed</div>
+          <div style="display:flex; gap:10px; margin-top:10px">
+            <button class="btn" id="watch-ad">Watch ad</button>
+            <button class="pill" id="fallback">Manual unlock</button>
+          </div>
+          <div class="muted" style="font-size:12px; margin-top:8px">
+            Unlock stays active for 24 hours on this device.
+          </div>
+        </div>
+
+        <article id="chapter-body"></article>
+      </section>
+
+      <footer>© <span id="year"></span> Anastasia. All rights reserved.</footer>
+    </main>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="drawer" class="drawer" aria-hidden="true" aria-label="Fandom navigation">
+    <div class="drawer-panel">
+      <header class="topbar">
+        <div class="logo">Fandoms</div>
+        <button class="pill" id="close-drawer">Close</button>
+      </header>
+      <div class="side" id="drawer-content"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
