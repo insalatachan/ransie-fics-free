@@ -41,26 +41,7 @@
       <section class="content">
         <div class="chapter-title" id="chapter-title">Select a story</div>
         <div class="meta" id="chapter-meta">—</div>
-
-        <!-- UNLOCK OVERLAY -->
-        <div id="locker" class="overlay" hidden>
-          <div class="title" style="font-weight:800; margin-bottom:6px">Unlock chapter</div>
-          <div class="muted">
-            Watch <strong id="ads-needed">1</strong> ad(s) to unlock.
-          </div>
-          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div id="ads-bar" class="bar"></div>
-          </div>
-          <div class="muted" id="ads-status">0% completed</div>
-          <div style="display:flex; gap:10px; margin-top:10px">
-            <button class="btn" id="watch-ad">Watch ad</button>
-            <button class="pill" id="fallback">Manual unlock</button>
-          </div>
-          <div class="muted" style="font-size:12px; margin-top:8px">
-            Unlock stays active for 24 hours on this device.
-          </div>
-        </div>
-
+        <!-- Nessun overlay di sblocco nella versione FREE -->
         <article id="chapter-body"></article>
       </section>
 
@@ -79,7 +60,8 @@
     </div>
   </div>
 
-  <script src="data.js"></script>
-  <script src="script.js"></script>
+  <!-- Cache-busting per assicurare aggiornamento -->
+  <script src="data.js?v=free-4"></script>
+  <script src="script.js?v=free-4"></script>
 </body>
 </html>
