@@ -90,7 +90,7 @@ function makeSidebar(container){
     // FANDOM
     const fanBox = document.createElement('div');
     fanBox.className = 'fandom';
-    fanBox.setAttribute('aria-expanded', gi===0 ? 'true' : 'false'); // espandi il primo fandom
+    fanBox.setAttribute('aria-expanded', gi===0 ? 'true' : 'false');
 
     const fanBtn = document.createElement('button');
     fanBtn.textContent = group.fandom || 'Fandom';
@@ -103,7 +103,7 @@ function makeSidebar(container){
     storiesWrap.className = 'stories';
 
     // STORIES
-    (group.stories || []).forEach((st, si)=>{
+    (group.stories || []).forEach((st)=>{
       const storyBox = document.createElement('div');
       storyBox.className = 'storybox';
       storyBox.setAttribute('aria-expanded', 'false');
@@ -173,9 +173,21 @@ function openStory(story, chapterIndex){
 
 async function renderChapter(){
   if(!current.story){
-    titleEl.textContent='Select a story';
+    titleEl.textContent='Welcome';
     metaEl.textContent='—';
-    bodyEl.innerHTML='';
+    bodyEl.innerHTML = `
+      <div style="max-width:640px;line-height:1.7;font-size:1.05rem">
+        <h2 style="margin:0 0 .5rem 0">Welcome to my Fanfiction Library</h2>
+        <p>Thank you for visiting and reading my stories. Your support helps me keep writing and releasing new chapters.</p>
+        <p>If you enjoy the content and want to support my work, consider joining me on Patreon for early access and exclusive extras.</p>
+        <p style="margin-top:14px">
+          <a href="https://www.patreon.com/" target="_blank"
+             style="padding:10px 16px;background:#e85b46;color:#fff;border-radius:8px;font-weight:700;text-decoration:none;">
+            Support me on Patreon ❤️
+          </a>
+        </p>
+      </div>
+    `;
     prevBtn.disabled=true; nextBtn.disabled=true; 
     return;
   }
@@ -209,5 +221,4 @@ nextBtn.addEventListener('click', ()=>{
   }
 });
 
-// Default: open first story if available
-if (DATA[0]?.stories[0]) openStory(DATA[0].stories[0], 0);
+// Importante: niente auto-open. La homepage mostra il welcome finché non si seleziona una storia.
