@@ -1,43 +1,145 @@
-// ========================= YOUR CONTENT =========================
-// Fandoms -> Stories -> Chapters
-// You will edit this later to add your real stories.
-
 window.FF_DATA = [
+
+  /* ===================== STRAY KIDS ===================== */
   {
-    fandom: 'TESTO 1',
+    fandom: "STRAY KIDS",
     stories: [
+
       {
-        id: 's1',
-        title: 'Glass Sky',
+        id: "sk-prisoner",
+        title: "Prisoner Nights (HyunLix)",
         chapters: [
           {
-            id: 's1-c1',
-            title: 'Ch. 1 — Prologue',
-            minutes: 7,
-            requiredAds: 0, // no ads required
-            contentUrl: 'assets/chapters/s1-c1.html'
+            id: "sk-prisoner-001",
+            title: "Chapter 1",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/ch001.html"
           },
           {
-            id: 's1-c2',
-            title: 'Ch. 2 — The Deal',
-            minutes: 10,
-            requiredAds: 0, // 1 ad required
-            contentUrl: 'assets/chapters/s1-c2.html'
+            id: "sk-prisoner-002",
+            title: "Chapter 2",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/ch002.html"
           },
           {
-            id: 's1-c3',
-            title: 'Ch. 3 — The Key',
-            minutes: 12,
-            requiredAds: 0, // 2 ads required
-            contentUrl: 'assets/chapters/s1-c3.html'
+            id: "sk-prisoner-003",
+            title: "Chapter 3",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/prisoner-nights/ch003.html"
           }
         ]
+      },
+
+      {
+        id: "sk-undercover",
+        title: "Undercover Partner (BangLix)",
+        chapters: [
+          {
+            id: "sk-undercover-001",
+            title: "Chapter 1",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/undercover-partner/ch001.html"
+          },
+          {
+            id: "sk-undercover-002",
+            title: "Chapter 2",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/undercover-partner/ch002.html"
+          },
+          {
+            id: "sk-undercover-003",
+            title: "Chapter 3",
+            minutes: 8,
+            contentUrl: "assets/chapters/stray-kids/undercover-partner/ch003.html"
+          }
+        ]
+      },
+
+      {
+        id: "sk-empty",
+        title: "(Empty)",
+        chapters: []
       }
+
     ]
   },
-  { fandom: 'TESTO 2', stories: [] },
-  { fandom: 'TESTO 3', stories: [] },
-  { fandom: 'TESTO 4', stories: [] }
+
+  /* ===================== BTS ===================== */
+  {
+    fandom: "BTS",
+    stories: [
+
+      {
+        id: "bts-uYi",
+        title: "Under Your Influence (TaeKook)",
+        chapters: [
+          {
+            id: "bts-uYi-001",
+            title: "Chapter 1",
+            minutes: 8,
+            contentUrl: "assets/chapters/bts/under-your-influence/ch001.html"
+          },
+          {
+            id: "bts-uYi-002",
+            title: "Chapter 2",
+            minutes: 8,
+            contentUrl: "assets/chapters/bts/under-your-influence/ch002.html"
+          },
+          {
+            id: "bts-uYi-003",
+            title: "Chapter 3",
+            minutes: 8,
+            contentUrl: "assets/chapters/bts/under-your-influence/ch003.html"
+          }
+        ]
+      },
+
+      {
+        id: "bts-empty",
+        title: "(Empty)",
+        chapters: []
+      }
+
+    ]
+  },
+
+  /* ===================== HARRY POTTER ===================== */
+  {
+    fandom: "HARRY POTTER",
+    stories: [
+
+      {
+        id: "hp-deception",
+        title: "Deception (Dramione)",
+        chapters: [
+          {
+            id: "hp-deception-001",
+            title: "Chapter 1",
+            minutes: 8,
+            contentUrl: "assets/chapters/harry-potter/deception/ch001.html"
+          },
+          {
+            id: "hp-deception-002",
+            title: "Chapter 2",
+            minutes: 8,
+            contentUrl: "assets/chapters/harry-potter/deception/ch002.html"
+          },
+          {
+            id: "hp-deception-003",
+            title: "Chapter 3",
+            minutes: 8,
+            contentUrl: "assets/chapters/harry-potter/deception/ch003.html"
+          }
+        ]
+      },
+
+      {
+        id: "hp-empty",
+        title: "(Empty)",
+        chapters: []
+      }
+
+    ]
+  }
+
 ];
-
-
