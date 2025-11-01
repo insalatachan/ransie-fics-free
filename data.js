@@ -13,7 +13,7 @@ window.FF_DATA = [
             id: "sk-prisoner-001",
             title: "Chapter 1",
             minutes: 8,
-            contentUrl: "assets/chapters/stray-kids/prisoner-nights/chapter-01.html"
+            contentUrl: "assets/chapters/stray kids/prisoner nights/chapter-01.html"
           },
           {
             id: "sk-prisoner-002",
@@ -149,3 +149,4 @@ window.FF_DATA = [
   }
 
 ];
+
