@@ -1,0 +1,18 @@
+body { font-family: 'Lucida Grande', sans-serif; background:#111; color:#eee; padding:20px;}
+
+/* Layout additions */
+.site-header { font-size: 20px; margin-bottom: 12px; }
+.layout { display: grid; grid-template-columns: 280px 1fr; gap: 16px; min-height: 80vh; }
+#list { background: #1a1a1a; padding: 12px; overflow: auto; border-radius: 8px; }
+#viewer { background: #1a1a1a; padding: 16px; overflow: auto; border-radius: 8px; }
+.list-group { margin-bottom: 14px; }
+.list-group h3 { margin: 8px 0; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 4px; }
+.list-item { display: block; padding: 6px 8px; border-radius: 6px; text-decoration: none; color: #eee; }
+.list-item:hover { background: #2a2a2a; }
+.list-item.active { background: #333; }
+.chapter-title { font-size: 22px; margin-top: 0; }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  #list { order: 2; }
+  #viewer { order: 1; }
+}
