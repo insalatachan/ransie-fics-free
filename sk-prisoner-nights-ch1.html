@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STRAY KIDS · prisoner nights cap 1</title><style>
+:root{ --bg:#ffffff; --fg:#111; --muted:#666; --link:#0a66c2; --card:#f6f6f6; --border:#e5e5e5; }
+body.theme-dark{ --bg:#0f1115; --fg:#e8e8e8; --muted:#a0a0a0; --link:#7ab7ff; --card:#171923; --border:#2a2f3a; }
+*{ box-sizing:border-box; } html,body{ height:100%; margin:0; }
+body{ background:var(--bg); color:var(--fg);
+  font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif; line-height:1.6; }
+a{ color:var(--link); text-decoration:none; } a:hover{text-decoration:underline;}
+.sidebar{ position:fixed; top:0; left:0; bottom:0; width:240px; padding:20px 16px; border-right:1px solid var(--border); background:var(--bg); overflow:auto;}
+.brand{ font-size:22px; margin:0 0 12px; font-weight:700; }
+.nav{ display:flex; flex-direction:column; gap:6px; }
+.nav-link{ padding:8px 10px; border-radius:10px; }
+.nav-link.active, .nav-link:hover{ background:var(--card); }
+.group{ margin-top:12px; font-size:12px; color:var(--muted); letter-spacing:.8px; }
+.nav-sublink{ display:block; padding:6px 16px; font-size:14px; border-radius:8px; }
+.nav-sublink:hover{ background:var(--card); }
+.topbar{ position:fixed; left:240px; right:0; top:0; height:56px; display:flex; align-items:center; justify-content:flex-end;
+  padding:8px 16px; gap:12px; border-bottom:1px solid var(--border); background:var(--bg); z-index:2;}
+.controls button{ font-family:inherit; font-size:14px; padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:var(--card); cursor:pointer;}
+.controls .divider{ width:1px; height:24px; background:var(--border); margin:0 6px; display:inline-block; }
+.content{ margin-left:240px; padding:84px 24px 60px; max-width:860px; }
+.footer{ margin-left:240px; padding:20px 24px; border-top:1px solid var(--border); color:var(--muted); }
+.reader{ max-width:780px; } .chapter-meta{ color:var(--muted); font-size:14px; margin-bottom:12px; }
+.chapter-title{ margin:0 0 8px; font-size:28px; }
+.chapter-controls{ display:flex; gap:10px; margin-top:18px; }
+.chapter-controls a{ padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:inherit; text-decoration:none; }
+.chapter-controls a.disabled{ pointer-events:none; opacity:.5; }
+.ad-slot{ display:block; width:100%; min-height:60px; margin:12px 0; border:1px dashed var(--border); border-radius:10px; padding:10px; color:var(--muted); font-size:12px; }
+</style></head>
+<body class="theme-light">
+
+<aside class="sidebar">
+<h1 class="brand"><a href="index.html">fanfiction.</a></h1>
+<nav class="nav">
+<a class="nav-link" href="index.html">HOME</a>
+<a class="nav-link" href="about.html">ABOUT</a>
+<a class="nav-link" href="https://patreon.com/" target="_blank">PATREON</a>
+<div class="group">FANDOM</div>
+<details open><summary>STRAY KIDS</summary>
+<a class="nav-sublink" href="sk-prisoner-nights-index.html">prisoner nights</a>
+<a class="nav-sublink" href="sk-undercover-partner-index.html">undercover partner</a>
+</details>
+<details open><summary>BTS</summary>
+<a class="nav-sublink" href="bts-under-your-influence-index.html">under your influence</a>
+<a class="nav-sublink" href="bts-the-deal-index.html">the deal</a>
+</details>
+<details open><summary>HARRY POTTER</summary>
+<a class="nav-sublink" href="hp-deception-index.html">deception</a>
+</details>
+<div class="ad-slot"></div>
+</nav>
+</aside>
+
+<header class="topbar"><div class="controls">
+<button id="themeToggle">🌓</button><div class="divider"></div>
+<button id="decreaseText">A−</button><button id="increaseText">A+</button>
+</div><div class="ad-slot"></div></header>
+<main class="content">
+<div class="reader">
+<div class="chapter-meta">STRAY KIDS · prisoner nights</div>
+<h2 class="chapter-title">Capitolo 1</h2>
+<div class="reader-content">
+<p>Testo capitolo.</p><p>Secondo paragrafo.</p>
+</div>
+<div class="chapter-controls">
+<a href="#" class="disabled">← Precedente</a>
+<a href="sk-prisoner-nights-index.html">Indice</a>
+<a href="#" class="disabled">Successivo →</a>
+</div></div><div class="ad-slot"></div>
+</main>
+<footer class="footer"><small>© Anastasia</small></footer>
+<script>
+(function(){
+  const THEME_KEY="ff_theme", SIZE_KEY="ff_fontscale", body=document.body;
+  const t=localStorage.getItem(THEME_KEY); t==="dark"?body.classList.add("theme-dark"):body.classList.add("theme-light");
+  document.getElementById("themeToggle")?.addEventListener("click",()=>{
+    body.classList.toggle("theme-dark"); body.classList.toggle("theme-light");
+    localStorage.setItem(THEME_KEY, body.classList.contains("theme-dark")?"dark":"light");
+  });
+  function apply(x){(document.querySelector(".reader")||body).style.fontSize=x+"%";}
+  let s=parseInt(localStorage.getItem(SIZE_KEY)||"100",10); apply(s);
+  document.getElementById("increaseText")?.addEventListener("click",()=>{s=Math.min(200,s+10);localStorage.setItem(SIZE_KEY,s);apply(s)});
+  document.getElementById("decreaseText")?.addEventListener("click",()=>{s=Math.max(70,s-10);localStorage.setItem(SIZE_KEY,s);apply(s)});
+  const ads=['<a href="https://ko-fi.com" target="_blank">Ko-fi</a>','<a href="https://patreon.com" target="_blank">Patreon</a>','<a href="about.html">Chi sono</a>'];
+  document.querySelectorAll(".ad-slot").forEach((el,i)=>{el.innerHTML='<span class="ad-label">PUBBLICITÀ</span>'+ads[i%ads.length]});
+  const r=document.querySelector(".reader-content"); if(r){const p=r.querySelectorAll("p"); if(p.length>1){const d=document.createElement("div");d.className="ad-slot";d.innerHTML='<span class="ad-label">PUBBLICITÀ</span>'+ads[0]; r.insertBefore(d,p[1]);}}
+})();
+</script>
+</body></html>
