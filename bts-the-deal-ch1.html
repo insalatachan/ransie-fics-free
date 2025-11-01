@@ -1,90 +1,206 @@
-<!DOCTYPE html><html lang="it"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BTS · the deal cap 1</title><style>
-:root{ --bg:#ffffff; --fg:#111; --muted:#666; --link:#0a66c2; --card:#f6f6f6; --border:#e5e5e5; }
-body.theme-dark{ --bg:#0f1115; --fg:#e8e8e8; --muted:#a0a0a0; --link:#7ab7ff; --card:#171923; --border:#2a2f3a; }
-*{ box-sizing:border-box; } html,body{ height:100%; margin:0; }
-body{ background:var(--bg); color:var(--fg);
-  font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif; line-height:1.6; }
-a{ color:var(--link); text-decoration:none; } a:hover{text-decoration:underline;}
-.sidebar{ position:fixed; top:0; left:0; bottom:0; width:240px; padding:20px 16px; border-right:1px solid var(--border); background:var(--bg); overflow:auto;}
-.brand{ font-size:22px; margin:0 0 12px; font-weight:700; }
-.nav{ display:flex; flex-direction:column; gap:6px; }
-.nav-link{ padding:8px 10px; border-radius:10px; }
-.nav-link.active, .nav-link:hover{ background:var(--card); }
-.group{ margin-top:12px; font-size:12px; color:var(--muted); letter-spacing:.8px; }
-.nav-sublink{ display:block; padding:6px 16px; font-size:14px; border-radius:8px; }
-.nav-sublink:hover{ background:var(--card); }
-.topbar{ position:fixed; left:240px; right:0; top:0; height:56px; display:flex; align-items:center; justify-content:flex-end;
-  padding:8px 16px; gap:12px; border-bottom:1px solid var(--border); background:var(--bg); z-index:2;}
-.controls button{ font-family:inherit; font-size:14px; padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:var(--card); cursor:pointer;}
-.controls .divider{ width:1px; height:24px; background:var(--border); margin:0 6px; display:inline-block; }
-.content{ margin-left:240px; padding:84px 24px 60px; max-width:860px; }
-.footer{ margin-left:240px; padding:20px 24px; border-top:1px solid var(--border); color:var(--muted); }
-.reader{ max-width:780px; } .chapter-meta{ color:var(--muted); font-size:14px; margin-bottom:12px; }
-.chapter-title{ margin:0 0 8px; font-size:28px; }
-.chapter-controls{ display:flex; gap:10px; margin-top:18px; }
-.chapter-controls a{ padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid var(--border); color:inherit; text-decoration:none; }
-.chapter-controls a.disabled{ pointer-events:none; opacity:.5; }
-.ad-slot{ display:block; width:100%; min-height:60px; margin:12px 0; border:1px dashed var(--border); border-radius:10px; padding:10px; color:var(--muted); font-size:12px; }
-</style></head>
-<body class="theme-light">
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BTS · the deal · Capitolo 1</title>
+  <style>
+:root{
+  --bg:#ffffff; --fg:#141414; --muted:#6e6e6e; --link:#0a66c2;
+  --card:#fafafa; --border:#e7e7e7; --shadow:0 8px 30px rgba(0,0,0,.06);
+  --accent:#111111;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0e0f12; --fg:#eceff4; --muted:#a3a7b1; --link:#7ab7ff; --card:#141720; --border:#262a36; --shadow:0 10px 40px rgba(0,0,0,.35); --accent:#eaeaea;}
+}
+/* Explicit theme override classes */
+body.theme-dark{ --bg:#0e0f12; --fg:#eceff4; --muted:#a3a7b1; --link:#7ab7ff; --card:#141720; --border:#262a36; --shadow:0 10px 40px rgba(0,0,0,.35); }
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+  font-size:18px; line-height:1.75;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  transition: background .25s ease, color .25s ease;
+}
+a{ color:var(--link); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+button{ font-family:inherit; font-size:15px; border-radius:12px; padding:9px 12px; cursor:pointer; border:1px solid var(--border); background:var(--card); color:inherit; }
+button:hover{ transform:translateY(-1px); box-shadow:var(--shadow); }
+.btn-ghost{ background:transparent; }
+small, .muted{ color:var(--muted); }
 
+/* Layout */
+.sidebar{
+  position:fixed; inset:0 auto 0 0; width:260px; padding:22px 16px;
+  border-right:1px solid var(--border); background:var(--bg);
+  overflow:auto; transition:transform .25s ease;
+}
+.brand{ margin:0 0 16px; font-size:24px; font-weight:800; letter-spacing:.3px; }
+.brand .dot{ color:var(--muted); }
+.nav{ display:flex; flex-direction:column; gap:6px; }
+.nav-link{ padding:8px 12px; border-radius:12px; }
+.nav-link.active, .nav-link:hover{ background:var(--card); text-decoration:none; }
+.group{ margin-top:14px; font-size:12px; color:var(--muted); letter-spacing:1px; }
+details.folder{ margin:6px 0; }
+details.folder > summary{ cursor:pointer; padding:8px 10px; border-radius:10px; }
+details.folder[open] > summary{ background:var(--card); }
+.nav-sublink{ display:block; padding:6px 16px; border-radius:10px; font-size:15px; }
+.nav-sublink:hover{ background:var(--card); text-decoration:none; }
+
+.topbar{
+  position:fixed; left:260px; right:0; top:0; height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 18px; gap:12px; border-bottom:1px solid var(--border);
+  background:var(--bg); z-index:3;
+}
+.topbar .right{ display:flex; align-items:center; gap:10px; }
+.topbar .left{ display:flex; align-items:center; gap:10px; }
+
+.content{
+  margin:84px 24px 80px 284px; max-width:900px;
+}
+.card{
+  background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow);
+  border-radius:16px; padding:18px 20px; margin:0 0 18px 0;
+}
+.footer{ position:fixed; left:260px; right:0; bottom:0; border-top:1px solid var(--border); padding:12px 18px; color:var(--muted); background:var(--bg); }
+
+/* Reader */
+.reader{ max-width:820px; }
+.reader .chapter-meta{ color:var(--muted); font-size:14px; margin-bottom:6px; }
+.reader .chapter-title{ margin:0 0 14px; font-size:30px; }
+.reader .reader-content p{ margin:0 0 16px; }
+.reader .chapter-controls{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.reader .chapter-controls a{ padding:10px 14px; border-radius:12px; background:var(--card); border:1px solid var(--border); color:inherit; text-decoration:none; }
+.reader .chapter-controls a.disabled{ pointer-events:none; opacity:.45; }
+
+/* Ads */
+.ad-slot{
+  display:block; width:100%; min-height:64px; margin:14px 0; border:1px dashed var(--border);
+  border-radius:14px; padding:12px; color:var(--muted); font-size:14px;
+}
+.ad-slot .ad-label{ display:block; font-size:11px; letter-spacing:.6px; color:var(--muted); margin-bottom:6px; }
+
+/* Focus mode */
+.focus .sidebar{ transform:translateX(-100%); }
+.focus .topbar{ left:0; }
+.focus .content{ margin-left:24px; }
+.focus .footer{ left:0; }
+
+/* Progress bar */
+.progress{ position:fixed; left:0; top:0; height:3px; width:0; background:linear-gradient(90deg, var(--link), #9b5cff); z-index:5; transition:width .1s linear; }
+
+@media (max-width: 880px){
+  .sidebar{ transform:translateX(-100%); }
+  .topbar{ left:0; }
+  .content{ margin:84px 16px 80px 16px; }
+  .footer{ left:0; }
+}
+</style>
+</head>
+<body>
+  
 <aside class="sidebar">
-<h1 class="brand"><a href="index.html">fanfiction.</a></h1>
-<nav class="nav">
-<a class="nav-link" href="index.html">HOME</a>
-<a class="nav-link" href="about.html">ABOUT</a>
-<a class="nav-link" href="https://patreon.com/" target="_blank">PATREON</a>
-<div class="group">FANDOM</div>
-<details open><summary>STRAY KIDS</summary>
-<a class="nav-sublink" href="sk-prisoner-nights-index.html">prisoner nights</a>
-<a class="nav-sublink" href="sk-undercover-partner-index.html">undercover partner</a>
-</details>
-<details open><summary>BTS</summary>
-<a class="nav-sublink" href="bts-under-your-influence-index.html">under your influence</a>
-<a class="nav-sublink" href="bts-the-deal-index.html">the deal</a>
-</details>
-<details open><summary>HARRY POTTER</summary>
-<a class="nav-sublink" href="hp-deception-index.html">deception</a>
-</details>
-<div class="ad-slot"></div>
-</nav>
+  <h1 class="brand"><a href="index.html">fanfiction<span class="dot">.</span></a></h1>
+  <nav class="nav">
+    <a class="nav-link" href="index.html">HOME</a>
+    <a class="nav-link" href="about.html">ABOUT</a>
+    <a class="nav-link" target="_blank" rel="noopener" href="https://www.patreon.com/">PATREON</a>
+    <div class="group">FANDOM</div>
+    <details class="folder" open>
+      <summary>STRAY KIDS</summary>
+      <a class="nav-sublink" href="sk-prisoner-nights-index.html">prisoner nights</a>
+      <a class="nav-sublink" href="sk-undercover-partner-index.html">undercover partner</a>
+    </details>
+    <details class="folder" open>
+      <summary>BTS</summary>
+      <a class="nav-sublink" href="bts-under-your-influence-index.html">under your influence</a>
+      <a class="nav-sublink" href="bts-the-deal-index.html">the deal</a>
+    </details>
+    <details class="folder" open>
+      <summary>HARRY POTTER</summary>
+      <a class="nav-sublink" href="hp-deception-index.html">deception</a>
+    </details>
+    <div class="ad-slot" data-pos="sidebar"></div>
+  </nav>
 </aside>
 
-<header class="topbar"><div class="controls">
-<button id="themeToggle">🌓</button><div class="divider"></div>
-<button id="decreaseText">A−</button><button id="increaseText">A+</button>
-</div><div class="ad-slot"></div></header>
-<main class="content">
-<div class="reader">
-<div class="chapter-meta">BTS · the deal</div>
-<h2 class="chapter-title">Capitolo 1</h2>
-<div class="reader-content">
-<p>Testo capitolo.</p><p>Secondo paragrafo.</p>
-</div>
-<div class="chapter-controls">
-<a href="#" class="disabled">← Precedente</a>
-<a href="bts-the-deal-index.html">Indice</a>
-<a href="#" class="disabled">Successivo →</a>
-</div></div><div class="ad-slot"></div>
+  
+<div class="progress"></div>
+<header class="topbar">
+  <div class="left">
+    <button id="focusToggle" class="btn-ghost" title="Focus di lettura">🧘</button>
+  </div>
+  <div class="right">
+    <button id="themeToggle" title="Tema chiaro/scuro">🌓</button>
+    <button id="decreaseText" title="Diminuisci testo">A−</button>
+    <button id="increaseText" title="Aumenta testo">A+</button>
+  </div>
+</header>
+
+  <main class="content">
+<article class="reader card">
+  <div class="chapter-meta">BTS · the deal</div>
+  <h2 class="chapter-title">Capitolo 1</h2>
+  <div class="reader-content">
+    <p>Incolla qui il testo del capitolo. Segnaposto elegante per la lettura, con interlinea ampia e riga ~70ch.</p>
+    <p>Usa il pulsante 🧘 per attivare il focus di lettura e nascondere la sidebar, oppure A−/A+ per adattare la dimensione del testo.</p>
+  </div>
+  <div class="chapter-controls">
+    <a class="disabled" href="#">← Precedente</a>
+    <a href="bts-the-deal-index.html">Indice</a>
+    <a class="disabled" href="#">Successivo →</a>
+  </div>
+</article>
+<div class="ad-slot" data-pos="below-reader"></div>
 </main>
-<footer class="footer"><small>© Anastasia</small></footer>
-<script>
+  <footer class="footer"><small>© Anastasia · lettura pulita</small></footer>
+  <script>
 (function(){
-  const THEME_KEY="ff_theme", SIZE_KEY="ff_fontscale", body=document.body;
-  const t=localStorage.getItem(THEME_KEY); t==="dark"?body.classList.add("theme-dark"):body.classList.add("theme-light");
+  const THEME_KEY="ff_theme", SIZE_KEY="ff_fontscale", FOCUS_KEY="ff_focus", body=document.body;
+  // theme
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  if(savedTheme==="dark"){ body.classList.add("theme-dark"); }
+  // font scale
+  function applyScale(scale){ (document.querySelector(".reader")||body).style.fontSize = scale+"%"; }
+  let scale = parseInt(localStorage.getItem(SIZE_KEY) || "100", 10); applyScale(scale);
+  // bind controls
   document.getElementById("themeToggle")?.addEventListener("click",()=>{
-    body.classList.toggle("theme-dark"); body.classList.toggle("theme-light");
-    localStorage.setItem(THEME_KEY, body.classList.contains("theme-dark")?"dark":"light");
+    body.classList.toggle("theme-dark");
+    localStorage.setItem(THEME_KEY, body.classList.contains("theme-dark") ? "dark" : "light");
   });
-  function apply(x){(document.querySelector(".reader")||body).style.fontSize=x+"%";}
-  let s=parseInt(localStorage.getItem(SIZE_KEY)||"100",10); apply(s);
-  document.getElementById("increaseText")?.addEventListener("click",()=>{s=Math.min(200,s+10);localStorage.setItem(SIZE_KEY,s);apply(s)});
-  document.getElementById("decreaseText")?.addEventListener("click",()=>{s=Math.max(70,s-10);localStorage.setItem(SIZE_KEY,s);apply(s)});
-  const ads=['<a href="https://ko-fi.com" target="_blank">Ko-fi</a>','<a href="https://patreon.com" target="_blank">Patreon</a>','<a href="about.html">Chi sono</a>'];
-  document.querySelectorAll(".ad-slot").forEach((el,i)=>{el.innerHTML='<span class="ad-label">PUBBLICITÀ</span>'+ads[i%ads.length]});
-  const r=document.querySelector(".reader-content"); if(r){const p=r.querySelectorAll("p"); if(p.length>1){const d=document.createElement("div");d.className="ad-slot";d.innerHTML='<span class="ad-label">PUBBLICITÀ</span>'+ads[0]; r.insertBefore(d,p[1]);}}
+  document.getElementById("increaseText")?.addEventListener("click",()=>{ scale=Math.min(220,scale+10); localStorage.setItem(SIZE_KEY,scale); applyScale(scale); });
+  document.getElementById("decreaseText")?.addEventListener("click",()=>{ scale=Math.max(70,scale-10); localStorage.setItem(SIZE_KEY,scale); applyScale(scale); });
+  document.getElementById("focusToggle")?.addEventListener("click",()=>{
+    body.classList.toggle("focus"); localStorage.setItem(FOCUS_KEY, body.classList.contains("focus") ? "1":"0");
+  });
+  if(localStorage.getItem(FOCUS_KEY)==="1"){ body.classList.add("focus"); }
+  // ad placeholders
+  const creatives=['<a href="https://ko-fi.com" target="_blank" rel="noopener">Supportami su Ko‑fi</a>',
+                   '<a href="https://www.patreon.com" target="_blank" rel="noopener">Diventa Patron</a>',
+                   '<a href="about.html">Leggi chi sono</a>'];
+  document.querySelectorAll(".ad-slot").forEach((slot,i)=>{
+    slot.innerHTML = '<span class="ad-label">PUBBLICITÀ</span><div>'+creatives[i%creatives.length]+'</div>';
+  });
+  // inline ad after first paragraph
+  const rc=document.querySelector(".reader-content");
+  if(rc){
+    const ps=rc.querySelectorAll("p");
+    if(ps.length>1){
+      const s=document.createElement("div"); s.className="ad-slot"; s.innerHTML='<span class="ad-label">PUBBLICITÀ</span><div>'+creatives[0]+'</div>';
+      rc.insertBefore(s, ps[1].nextSibling);
+    }
+  }
+  // reading progress
+  const bar=document.querySelector(".progress");
+  function onScroll(){
+    const el=document.querySelector(".reader")||document.body, sc=window.scrollY,
+          h=document.documentElement.scrollHeight - window.innerHeight;
+    const pct=Math.max(0, Math.min(1, sc / Math.max(1,h)));
+    if(bar){ bar.style.width=(pct*100).toFixed(2)+"%"; }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true}); onScroll();
 })();
 </script>
 </body></html>
