@@ -1,66 +1,20 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>My Fanfiction Library</title>
-  <link rel="stylesheet" href="style.css?v=free-10"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>My Fanfiction Library</title>
+<link rel="stylesheet" href="style.css?v=1"/>
 </head>
 <body>
-  <!-- Mobile top bar -->
-  <div class="mobilebar">
-    <div class="row">
-      <button class="pill" id="open-drawer">☰ Fandoms</button>
-      <div class="logo">My Fanfiction Library</div>
-      <button class="pill" id="theme-toggle" aria-label="Toggle theme">🌓</button>
-    </div>
-  </div>
-
-  <div class="app">
-    <aside>
-      <header class="topbar">
-        <div class="logo">My Fanfiction Library</div>
-        <button class="pill" id="theme-toggle-desktop" aria-label="Toggle theme">🌓</button>
-      </header>
-      <div class="side" id="sidebar"></div>
-    </aside>
-
-    <main class="reader">
-      <div class="toolbar">
-        <div class="controls">
-          <button class="pill" id="prev-chapter" disabled>← Previous chapter</button>
-          <button class="pill" id="next-chapter" disabled>Next chapter →</button>
-        </div>
-        <div class="controls">
-          <span class="muted">Text size</span>
-          <button class="pill" id="font-dec">A−</button>
-          <button class="pill" id="font-inc">A+</button>
-        </div>
-      </div>
-
-      <section class="content">
-        <div class="chapter-title" id="chapter-title">Welcome</div>
-        <div class="meta" id="chapter-meta">—</div>
-        <article id="chapter-body"></article>
-      </section>
-
-      <footer>© <span id="year"></span> Anastasia. All rights reserved.</footer>
-    </main>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div id="drawer" class="drawer" aria-hidden="true" aria-label="Fandom navigation">
-    <div class="drawer-panel">
-      <header class="topbar">
-        <div class="logo">Fandoms</div>
-        <button class="pill" id="close-drawer">Close</button>
-      </header>
-      <div class="side" id="drawer-content"></div>
-    </div>
-  </div>
-
-  <!-- cache-busting -->
-  <script src="data.js?v=free-10"></script>
-  <script src="script.js?v=free-10"></script>
+<div id="app">
+  <header class="site-header"><h1>My Fanfiction Library</h1></header>
+  <main class="layout">
+    <aside id="list"></aside>
+    <article id="viewer"><p>Select a chapter from the list.</p></article>
+  </main>
+</div>
+<script src="data.js?v=1"></script>
+<script src="script.js?v=1"></script>
 </body>
 </html>
